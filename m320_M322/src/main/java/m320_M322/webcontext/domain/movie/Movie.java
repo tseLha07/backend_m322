@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import m320_M322.config.generics.ExtendedEntity;
 import m320_M322.webcontext.domain.genre.Genre;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
@@ -14,14 +15,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "movies")
-public class Movie {
-
-    @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
-    @Generated(GenerationTime.ALWAYS)
-    @Column(name = "id")
-    private String id;
+public class Movie extends ExtendedEntity {
 
     @Getter
     @NotNull

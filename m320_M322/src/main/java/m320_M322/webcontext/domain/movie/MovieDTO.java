@@ -7,6 +7,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import m320_M322.config.generics.ExtendedDTO;
 import m320_M322.webcontext.domain.genre.Genre;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
@@ -15,13 +16,7 @@ import org.hibernate.annotations.GenericGenerator;
 import java.time.LocalDate;
 import java.util.Collection;
 
-public class MovieDTO {
-    @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
-    @Generated(GenerationTime.ALWAYS)
-    @Column(name = "id")
-    protected String id;
+public class MovieDTO extends ExtendedDTO {
 
     @Getter
     @NotNull
