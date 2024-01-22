@@ -1,10 +1,9 @@
-package m320_M322.webcontext.domain.movie;
+package m320_M322.webcontext.domain.user;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/movies")
-public class MovieController {
-
+@RequestMapping("/users")
+public class UserController {
 }
