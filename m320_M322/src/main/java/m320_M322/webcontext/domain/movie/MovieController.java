@@ -25,34 +25,29 @@ public class MovieController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('MOVIE_READ_ALL')")
     public ResponseEntity<List<MovieDTO>> findAll(){
         return ResponseEntity.status(HttpStatus.OK).body(movieMapper.toDTOs(movieService.findAll()));
     }
 
     @GetMapping({"/{movieId}"})
-    @PreAuthorize("hasAuthority('MOVIE_READ')")
-    public ResponseEntity<MovieDTO> getById(@PathVariable("movieId") UUID movieId) {
+    public ResponseEntity<MovieDTO> getById(@PathVariable("movieId") int movieId) {
         return ResponseEntity.status(HttpStatus.OK).body(movieMapper.toDTO(movieService.findById(movieId)));
     }
 
     @PostMapping("/")
-    @PreAuthorize("hasAuthority('MOVIE_CREATE')")
     public ResponseEntity<MovieDTO> createMovie(@RequestBody MovieDTO movie) {
         return ResponseEntity.status(HttpStatus.CREATED).body(movieMapper.toDTO(movieService.save(movieMapper.fromDTO(movie))));
     }
 
     @PutMapping("/{movieId}")
-    @PreAuthorize("hasAuthority('MOVIE_MODIFY')")
-    public ResponseEntity<MovieDTO> editMovie(@RequestBody MovieDTO movie, @PathVariable("movieiD") UUID movieId) {
+    public ResponseEntity<MovieDTO> editMovie(@RequestBody MovieDTO movie, @PathVariable("movieId") int movieId) {
         return ResponseEntity.status(HttpStatus.OK).body(movieMapper.toDTO(
                 movieService.updateById(movieId, movieMapper.fromDTO(movie))));
     }
 
     @DeleteMapping("/{movieId}")
-    @PreAuthorize("hasAuthority('MOVIE_DELETE')")
     public ResponseEntity<MovieDTO> deleteMovie(
-            @PathVariable("movieId") UUID movieId) {
+            @PathVariable("movieId") int movieId) {
         movieService.deleteById(movieId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

@@ -6,12 +6,12 @@ import java.util.UUID;
 public interface ExtendedService<T extends ExtendedEntity> {
     T save(T entity);
 
-    T updateById(UUID id, T entity);
+    T updateById(int id, T entity);
 
-    void deleteById(UUID id);
+    void deleteById(int id);
 
     List<T> findAll();
 
-    T findById(UUID id);
+    T findById(int id);
 }
 

@@ -12,5 +12,5 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class ExtendedDTO {
-    private UUID id;
+    private int id;
 }

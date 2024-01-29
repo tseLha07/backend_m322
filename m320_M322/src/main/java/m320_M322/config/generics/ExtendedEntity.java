@@ -23,9 +23,8 @@ import java.util.UUID;
 public abstract class ExtendedEntity {
 
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @GeneratedValue
     @Column(columnDefinition = "uuid", name = "id", updatable = false, nullable = false)
-    private UUID id;
+    private int id;
 
 }

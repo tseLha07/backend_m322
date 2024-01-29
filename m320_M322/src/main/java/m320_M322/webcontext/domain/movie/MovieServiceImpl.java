@@ -27,7 +27,7 @@ public class MovieServiceImpl extends ExtendedServiceImpl<Movie> implements Movi
     }
 
     @Override
-    public Movie updateById(UUID id, Movie entity) {
+    public Movie updateById(int id, Movie entity) {
         entity.setId(id);
         log.trace("trying to update the movie.");
         Movie movie = repositoryMovie.save(entity);
@@ -36,7 +36,7 @@ public class MovieServiceImpl extends ExtendedServiceImpl<Movie> implements Movi
     }
 
     @Override
-    public void deleteById(UUID id) {
+    public void deleteById(int id) {
         if(!repositoryMovie.existsById(id)) {
             throw new NoSuchElementException(String.format("Movie with ID '%s' not found", id));
         }
