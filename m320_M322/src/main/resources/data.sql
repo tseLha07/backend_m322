@@ -1,10 +1,7 @@
 --USERS
-insert into users (id, email, firstname, lastname, password)
-values ('ba804cb9-fa14-42a5-afaf-be488742fc54', 'admin@example.com', 'James', 'Bond',
-        '$2a$10$TM3PAYG3b.H98cbRrHqWa.BM7YyCqV92e/kUTBfj85AjayxGZU7d6'), -- Password: 1234
-       ('0d8fa44c-54fd-4cd0-ace9-2a7da57992de', 'user@example.com', 'Tyler', 'Durden',
-        '$2a$10$TM3PAYG3b.H98cbRrHqWa.BM7YyCqV92e/kUTBfj85AjayxGZU7d6')  -- Password: 1234
-    ON CONFLICT DO NOTHING;
+INSERT INTO users(id, email, firstname, lastname, password)
+VALUES ('ba804cb9-fa14-42a5-afaf-be488742fc54', 'admin@example.com', 'James', 'Bond', '$2a$10$TM3PAYG3b.H98cbRrHqWa.BM7YyCqV92e/kUTBfj85AjayxGZU7d6'),
+       ('48ccfd66-6a63-4436-ac92-fe230614aaca', 'karma@example.com', 'Karma', 'Tselha', '$2a$10$TM3PAYG3b.H98cbRrHqWa.BM7YyCqV92e/kUTBfj85AjayxGZU7d6');
 
 --ROLES
 INSERT INTO role(id, name)
@@ -25,7 +22,7 @@ VALUES ('2ebf301e-6c61-4076-98e3-2a38b31daf86', 'DEFAULT'),
 
 --assign roles to users
 insert into users_role (users_id, role_id)
-values ('0d8fa44c-54fd-4cd0-ace9-2a7da57992de', 'c6aee32d-8c35-4481-8b3e-a876a39b0c02'),
+values ('48ccfd66-6a63-4436-ac92-fe230614aaca', 'c6aee32d-8c35-4481-8b3e-a876a39b0c02'),
        ('ba804cb9-fa14-42a5-afaf-be488742fc54', 'ab505c92-7280-49fd-a7de-258e618df074'),
        ('ba804cb9-fa14-42a5-afaf-be488742fc54', 'c6aee32d-8c35-4481-8b3e-a876a39b0c02') ON CONFLICT DO NOTHING;
 
