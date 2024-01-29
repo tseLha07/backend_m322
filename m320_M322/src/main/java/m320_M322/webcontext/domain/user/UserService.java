@@ -1,4 +1,11 @@
 package m320_M322.webcontext.domain.user;
 
-public interface UserService {
+import m320_M322.config.generics.ExtendedService;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+public interface UserService extends UserDetailsService, ExtendedService<User> {
+
+    User register(User user);
+
+    User registerUser(User user);
 }

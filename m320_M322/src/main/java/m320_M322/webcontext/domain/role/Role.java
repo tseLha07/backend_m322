@@ -2,18 +2,27 @@ package m320_M322.webcontext.domain.role;
 
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 import m320_M322.config.generics.ExtendedEntity;
 import m320_M322.webcontext.domain.authority.Authority;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Set;
+import java.util.UUID;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@Accessors(chain = true)
 @Entity
 @Table(name = "role")
 public class Role extends ExtendedEntity {
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -22,30 +31,15 @@ public class Role extends ExtendedEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Authority> authorities;
 
-    public Role() {
-        super();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Role setName(String name) {
+    public Role(UUID id, String name, Set<Authority> authorities){
+        super(id);
         this.name = name;
-        return this;
-    }
-
-    public Set<Authority> getAuthorities() {
-        return authorities;
-    }
-
-    public Role setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
-        return this;
     }
 
     @Override
     public String toString() {
         return getName();
     }
+
 }

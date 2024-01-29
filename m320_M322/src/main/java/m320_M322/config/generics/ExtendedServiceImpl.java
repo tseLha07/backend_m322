@@ -1,11 +1,13 @@
 package m320_M322.config.generics;
 
+import jakarta.transaction.Transactional;
 import m320_M322.config.error.BadRequestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.UUID;
 
 public abstract class ExtendedServiceImpl<T extends ExtendedEntity> implements ExtendedService<T> {
 
@@ -19,12 +21,14 @@ public abstract class ExtendedServiceImpl<T extends ExtendedEntity> implements E
     }
 
     @Override
+    @Transactional
     public T save(T entity) {
         return repository.save(entity);
     }
 
     @Override
-    public void deleteById(String id) {
+    @Transactional
+    public void deleteById(UUID id) throws NoSuchElementException {
         if (repository.existsById(id)) {
             repository.deleteById(id);
         } else {
@@ -33,10 +37,10 @@ public abstract class ExtendedServiceImpl<T extends ExtendedEntity> implements E
     }
 
     @Override
-    public T updateById(String id, T entity) {
+    @Transactional
+    public T updateById(UUID id, T entity) throws NoSuchElementException {
         if (repository.existsById(id)) {
             checkUpdatedEntityId(id, entity);
-
             entity.setId(id);
             return repository.save(entity);
         } else {
@@ -50,22 +54,16 @@ public abstract class ExtendedServiceImpl<T extends ExtendedEntity> implements E
     }
 
     @Override
-    public T findById(String id) {
-        Optional<T> optional = repository.findById(id);
-
-        if (optional.isPresent()) {
-            return optional.get();
-        } else {
-            throw new NoSuchElementException(String.format(NO_SUCH_ELEMENT_ERROR_MSG, id));
-        }
+    public T findById(UUID id) {
+        return repository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
     @Override
-    public boolean existsById(String id) {
+    public boolean existsById(UUID id) {
         return repository.existsById(id);
     }
 
-    protected void checkUpdatedEntityId(String id, T entity){
+    protected void checkUpdatedEntityId(UUID id, T entity){
         LOGGER.debug("id: {}", id);
         LOGGER.debug("entity: {}", entity);
 

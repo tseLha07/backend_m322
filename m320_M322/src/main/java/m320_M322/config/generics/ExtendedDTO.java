@@ -1,20 +1,16 @@
 package m320_M322.config.generics;
 
-public class ExtendedDTO {
-    private String id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-    public ExtendedDTO() {
-    }
+import java.util.UUID;
 
-    public ExtendedDTO(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public abstract class ExtendedDTO {
+    private UUID id;
 }

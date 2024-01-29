@@ -1,20 +1,13 @@
 package m320_M322.webcontext.domain.movie;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import m320_M322.config.generics.ExtendedDTO;
-import m320_M322.webcontext.domain.genre.Genre;
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
-import java.util.Collection;
 
 public class MovieDTO extends ExtendedDTO {
 
@@ -25,7 +18,7 @@ public class MovieDTO extends ExtendedDTO {
     protected String name;
 
     @ManyToMany
-    protected Collection<Genre> genre;
+    protected String genre;
 
     @NotNull
     @Column(name = "cast")
@@ -42,7 +35,4 @@ public class MovieDTO extends ExtendedDTO {
     @NotNull
     @Column(name = "image")
     protected String imageURL;
-
-
-
 }

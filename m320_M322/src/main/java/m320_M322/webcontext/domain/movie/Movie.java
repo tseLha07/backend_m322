@@ -5,10 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import m320_M322.config.generics.ExtendedEntity;
-import m320_M322.webcontext.domain.genre.Genre;
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -23,27 +19,34 @@ public class Movie extends ExtendedEntity {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany
-    private Collection<Genre> genre;
+    @Getter
+    @NotNull
+    @Column(name = "genre")
+    private String genre;
 
+    @Getter
     @NotNull
     @Column(name = "cast")
     private String cast;
 
+    @Getter
     @NotNull
     @Column(name = "release_date")
     private LocalDate releaseDate;
 
+    @Getter
     @NotNull
     @Column(name = "summary")
     private String summary;
 
+    @Getter
     @NotNull
     @Column(name = "image")
     private String imageURL;
 
-    public Movie(String name, String cast, LocalDate releaseDate, String summary, String imageURL){
+    public Movie(String name, String genre, String cast, LocalDate releaseDate, String summary, String imageURL){
         this.name = name;
+        this.genre = genre;
         this.releaseDate = releaseDate;
         this.cast = cast;
         this.summary = summary;
@@ -54,6 +57,11 @@ public class Movie extends ExtendedEntity {
 
     public Movie setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public Movie setGenre(String genre) {
+        this.genre = genre;
         return this;
     }
 

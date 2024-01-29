@@ -12,10 +12,4 @@ import java.util.Collection;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface RoleMapper extends ExtendedDTOMapper<Role, RoleDTO> {
-
-    @Named("toWithoutAuthoritiesDTO")
-    RoleDTO.WithoutAuthorities toWithoutAuthoritiesDTO(Role role);
-
-    @IterableMapping(qualifiedByName = "toWithoutAuthoritiesDTO")
-    Collection<RoleDTO.WithoutAuthorities> toWithoutAuthoritiesDTOs(Collection<Role> roles);
 }
