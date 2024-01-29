@@ -5,13 +5,15 @@ import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import lombok.Setter;
 import m320_M322.config.generics.ExtendedDTO;
 
 import java.time.LocalDate;
 
+@Getter
+@Setter
 public class MovieDTO extends ExtendedDTO {
 
-    @Getter
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "name")

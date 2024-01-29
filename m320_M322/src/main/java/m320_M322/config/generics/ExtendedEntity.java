@@ -8,11 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
-import org.hibernate.annotations.GenericGenerator;
-
-import java.util.UUID;
 
 
 @Getter
@@ -24,7 +19,7 @@ public abstract class ExtendedEntity {
 
     @Id
     @GeneratedValue
-    @Column(columnDefinition = "uuid", name = "id", updatable = false, nullable = false)
+    @Column(name = "id")
     private int id;
 
 }
