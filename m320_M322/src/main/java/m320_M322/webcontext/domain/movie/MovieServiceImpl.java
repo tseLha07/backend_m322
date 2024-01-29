@@ -1,14 +1,12 @@
 package m320_M322.webcontext.domain.movie;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
-import m320_M322.config.generics.ExtendedJpaRepository;
 import m320_M322.config.generics.ExtendedServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.UUID;
 
 @Log4j2
 @Service
@@ -29,7 +27,7 @@ public class MovieServiceImpl extends ExtendedServiceImpl<Movie> implements Movi
     }
 
     @Override
-    public Movie updateById(String id, Movie entity) {
+    public Movie updateById(UUID id, Movie entity) {
         entity.setId(id);
         log.trace("trying to update the movie.");
         Movie movie = repositoryMovie.save(entity);
@@ -38,7 +36,7 @@ public class MovieServiceImpl extends ExtendedServiceImpl<Movie> implements Movi
     }
 
     @Override
-    public void deleteById(String id) {
+    public void deleteById(UUID id) {
         if(!repositoryMovie.existsById(id)) {
             throw new NoSuchElementException(String.format("Movie with ID '%s' not found", id));
         }

@@ -1,6 +1,5 @@
 package m320_M322.webcontext.domain.user;
 
-import jakarta.transaction.Transactional;
 import lombok.extern.log4j.Log4j2;
 import m320_M322.config.generics.ExtendedJpaRepository;
 import m320_M322.config.generics.ExtendedServiceImpl;
@@ -10,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import java.util.Collections;
+import java.util.HashSet;
 
 @Log4j2
 @Service
@@ -34,10 +35,14 @@ public class UserServiceImpl extends ExtendedServiceImpl<User> implements UserSe
     }
 
     @Override
-    @Transactional
+    @org.springframework.transaction.annotation.Transactional
     public User register(User user) {
-        log.trace("tryinf to register  new user");
-
+        log.trace("trying to register a new user");
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        var role = roleService.findByName("USER");
+        user.setRoles(new HashSet<>(Collections.singletonList(role)));
+        var savedUser = save(user);
+        log.debug("registered a new user");
         return savedUser;
     }
 }

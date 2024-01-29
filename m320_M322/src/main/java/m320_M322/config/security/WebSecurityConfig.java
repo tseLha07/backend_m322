@@ -63,7 +63,7 @@ public class WebSecurityConfig {
                 .build();
     }
 
-    @Bean // The CORS Configuration for the backend
+    @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("*"));

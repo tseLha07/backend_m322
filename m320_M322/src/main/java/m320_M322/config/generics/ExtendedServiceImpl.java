@@ -58,11 +58,6 @@ public abstract class ExtendedServiceImpl<T extends ExtendedEntity> implements E
         return repository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
-    @Override
-    public boolean existsById(UUID id) {
-        return repository.existsById(id);
-    }
-
     protected void checkUpdatedEntityId(UUID id, T entity){
         LOGGER.debug("id: {}", id);
         LOGGER.debug("entity: {}", entity);

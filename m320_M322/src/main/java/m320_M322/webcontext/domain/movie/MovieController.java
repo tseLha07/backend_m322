@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/movies")
@@ -28,7 +29,7 @@ public class MovieController {
     }
 
     @GetMapping({"/{movieId}"})
-    public ResponseEntity<MovieDTO> getById(@PathVariable("movieId") String movieId) {
+    public ResponseEntity<MovieDTO> getById(@PathVariable("movieId") UUID movieId) {
         return ResponseEntity.status(HttpStatus.OK).body(movieMapper.toDTO(movieService.findById(movieId)));
     }
 
@@ -38,14 +39,14 @@ public class MovieController {
     }
 
     @PutMapping("/{movieId}")
-    public ResponseEntity<MovieDTO> editMovie(@RequestBody MovieDTO movie, @PathVariable("movieiD") String movieId) {
+    public ResponseEntity<MovieDTO> editMovie(@RequestBody MovieDTO movie, @PathVariable("movieiD") UUID movieId) {
         return ResponseEntity.status(HttpStatus.OK).body(movieMapper.toDTO(
                 movieService.updateById(movieId, movieMapper.fromDTO(movie))));
     }
 
     @DeleteMapping("/{movieId}")
-    public ResponseEntity<MovieDTO> removeSchoolGrade(
-            @PathVariable("movieId") String movieId) {
+    public ResponseEntity<MovieDTO> deleteMovie(
+            @PathVariable("movieId") UUID movieId) {
         movieService.deleteById(movieId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

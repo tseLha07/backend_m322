@@ -1,6 +1,5 @@
 package m320_M322.config.security.helpers;
 
-//As introduced in HTTP/1.0 https://www.rfc-editor.org/rfc/rfc1945
 public enum AuthorizationSchemas {
     BASIC("Basic"), BEARER("Bearer"), DIGEST("Digest");
     private final String text;

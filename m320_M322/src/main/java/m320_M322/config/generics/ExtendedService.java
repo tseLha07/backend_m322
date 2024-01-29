@@ -13,7 +13,5 @@ public interface ExtendedService<T extends ExtendedEntity> {
     List<T> findAll();
 
     T findById(UUID id);
-
-    boolean existsById(UUID id);
 }
 

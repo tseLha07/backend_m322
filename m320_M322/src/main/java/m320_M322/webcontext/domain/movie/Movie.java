@@ -7,7 +7,6 @@ import lombok.Getter;
 import m320_M322.config.generics.ExtendedEntity;
 
 import java.time.LocalDate;
-import java.util.Collection;
 
 @Entity
 @Table(name = "movies")
@@ -57,31 +56,6 @@ public class Movie extends ExtendedEntity {
 
     public Movie setName(String name) {
         this.name = name;
-        return this;
-    }
-
-    public Movie setGenre(String genre) {
-        this.genre = genre;
-        return this;
-    }
-
-    public Movie setCast(String cast) {
-        this.cast = cast;
-        return this;
-    }
-
-    public Movie setReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
-        return this;
-    }
-
-    public Movie setSummary(String summary) {
-        this.summary = summary;
-        return this;
-    }
-
-    public Movie setImageURL(String imageURL) {
-        this.imageURL = imageURL;
         return this;
     }
 }
